@@ -7,17 +7,20 @@
  */
 
 function getOptimalTurn(field, player) {
-  const board = [...field]; // копия поля
+  const board = [...field];
   const opponent = player === 0 ? 1 : 0;
 
-  // Проверка победителя по линиям
   const lines = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8], // строки
-    [0, 3, 6], [1, 4, 7], [2, 5, 8], // столбцы
-    [0, 4, 8], [2, 4, 6] // диагонали
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8], // строки
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8], // столбцы
+    [0, 4, 8],
+    [2, 4, 6], // диагонали
   ];
 
-  // Функция проверки линии
   const checkLine = (line) => {
     const [a, b, c] = line;
 
@@ -32,33 +35,31 @@ function getOptimalTurn(field, player) {
     }
 
     if (playerCount === 2 && opponentCount === 0 && emptyIndex !== -1) {
-      return { type: 'win', index: emptyIndex };
+      return { type: "win", index: emptyIndex };
     }
 
     if (opponentCount === 2 && playerCount === 0 && emptyIndex !== -1) {
-      return { type: 'block', index: emptyIndex };
+      return { type: "block", index: emptyIndex };
     }
 
     return null;
   };
 
-  //Немедленная победа
   for (const line of lines) {
     const result = checkLine(line);
-    if (result && result.type === 'win') {
+    if (result && result.type === "win") {
       return result.index;
     }
   }
 
-  //Блокируем победу противника
   for (const line of lines) {
     const result = checkLine(line);
-    if (result && result.type === 'block') {
+    if (result && result.type === "block") {
       return result.index;
     }
   }
 
-  //Приоритетные позиции (центр -> углы -> стороны)
+  //центр -> углы -> стороны
   const priorities = [4, 0, 2, 6, 8, 1, 3, 5, 7];
 
   for (const pos of priorities) {
