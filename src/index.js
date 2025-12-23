@@ -43,7 +43,7 @@ function getOptimalTurn(field, player) {
     }
 
     return null;
-  };
+  }
 
   for (const line of lines) {
     const result = checkLine(line);
@@ -70,7 +70,5 @@ function getOptimalTurn(field, player) {
 
   return -1;
 }
-
-const unused = 54666;
 
 module.exports = { getOptimalTurn };
