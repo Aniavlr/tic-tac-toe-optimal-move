@@ -71,6 +71,6 @@ function getOptimalTurn(field, player) {
   return -1;
 }
 
-const unused = 5464566;
+const unused = 54666;
 
 module.exports = { getOptimalTurn };
