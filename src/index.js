@@ -22,8 +22,6 @@ function getOptimalTurn(field, player) {
   ];
 
   const checkLine = (line) => {
-    const [a, b, c] = line;
-
     let playerCount = 0;
     let opponentCount = 0;
     let emptyIndex = -1;
@@ -43,7 +41,7 @@ function getOptimalTurn(field, player) {
     }
 
     return null;
-  }
+  };
 
   for (const line of lines) {
     const result = checkLine(line);
